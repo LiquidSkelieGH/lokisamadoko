@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
+import App from "./components/app";
+import Message from "./components/message";
+import MessageService from "./service/message.service";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +34,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let message = MessageService.getRandomMessage();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <App message={message}>
+          {children}
+        </App>
       </body>
     </html>
   );
