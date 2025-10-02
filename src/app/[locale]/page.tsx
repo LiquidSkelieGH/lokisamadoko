@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Header from "./components/header";
-import { Footer } from "./components/footer";
-import Message from "./components/message";
-import NextStream from "./components/next-stream";
-import LastStream from "./components/last-stream";
-import SocialLinks from "./components/social-links";
+import Header from "../components/header";
+import { Footer } from "../components/footer";
+import Message from "../components/message";
+import NextStream from "../components/next-stream";
+import LastStream from "../components/last-stream";
+import SocialLinks from "../components/social-links";
 
 export default function Home() {
   return (

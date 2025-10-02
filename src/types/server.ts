@@ -3,3 +3,9 @@ export interface ErrorResponse {
     status: number;
     timestamp: string;
 }
+
+export interface WhereIsMessage {
+    id: number;
+    text: string;
+    image: string;
+}
