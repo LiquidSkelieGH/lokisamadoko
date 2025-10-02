@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,6 +7,7 @@ import App from "../components/app";
 import Message from "../components/message";
 import WhereIsMessageService from "../service/where-is-message.service";
 import { NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,17 @@ export const viewport: Viewport = {
   userScalable: false,
 }
 
-export async function generateMetadata(data, parent): Promise<Metadata> {
-  console.log("Generating metadata", { data, parent });
-  return Promise.resolve(metadata);
+type MetadataProps = {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({params}: MetadataProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({locale, namespace: "Metadata"});
+  return {
+    title: t("Title"),
+    description: t("Description"),
+  };
 }
 
 export default async function RootLayout({
