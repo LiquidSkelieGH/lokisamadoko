@@ -20,8 +20,11 @@ export async function GET(request: NextRequest): Promise<Response> {
         headers.set("Accept", "application/json")
         const holodexResponse = await fetch(`https://holodex.net/api/v2/videos?channel_id=${CHANNEL_ID}&status=new,upcoming,live,past&type=stream&sort=available_at&max_upcoming_hours=168&include=description,live_info,refers,sources&limit=10`, 
             {
-                headers, 
-                next: { revalidate: REVALIDATE_SECONDS } // revalidate every minute
+                headers,
+                cache: 'force-cache', 
+                next: {
+                    revalidate: REVALIDATE_SECONDS 
+                } // revalidate every minute
             }
         );
 
