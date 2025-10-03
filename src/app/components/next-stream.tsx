@@ -5,28 +5,30 @@ import { streamInfoOptions } from "../service/stream-info.client"
 import { useFormatter, useNow, useTranslations } from "next-intl";
 import { calculateTimeDifference } from "../utils";
 import YouTubeDisplay from "./youtube-display";
+import { HolodexVideo } from "@/types/holodex";
+import { LayoutSection } from "./layout-section";
 
 function NextStreamContainer({ message, streamDate }: { message: string, streamDate?: string }) {
     return (
-        <div className="w-full max-w-2xl p-4 bg-black/[.05] dark:bg-white/[.06] rounded-lg text-center">
+        <LayoutSection>
             <p className="text-lg">{message}</p>
             {streamDate &&
                 <p className="text-lg">{streamDate}</p>
             }
-        </div>
+        </LayoutSection>
     )
 }
 
-function NextStreamWithEmbed({ streamId, streamDate, streamTitle }: { streamId: string, streamDate: Date, streamTitle: string }) {
+function NextStreamWithEmbed({ stream, streamDate }: { stream: HolodexVideo, streamDate: Date }) {
     const t = useTranslations('NextStream');
     const difference = calculateTimeDifference(streamDate, new Date());
     return (
-        <div className="w-full max-w-2xl p-4 bg-black/[.05] dark:bg-white/[.06] rounded-lg text-center">
+        <LayoutSection>
             <p className="text-lg">{t('Message', {...difference})}</p>
             <div>
-                <YouTubeDisplay videoId={streamId} title={streamTitle} />
+                <YouTubeDisplay stream={stream} />
             </div>
-        </div>
+        </LayoutSection>
     )
 }
 
@@ -66,5 +68,5 @@ export default function NextStream() {
     }
     const streamDate = new Date(streamInfo.available_at as string);
     const difference = calculateTimeDifference(streamDate, now);
-    return < NextStreamWithEmbed streamDate={streamDate} streamId={streamInfo.id} streamTitle={streamInfo.title}/>;
+    return < NextStreamWithEmbed stream={streamInfo} streamDate={streamDate}/>;
 }
