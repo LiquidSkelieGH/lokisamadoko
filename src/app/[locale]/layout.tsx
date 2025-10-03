@@ -9,6 +9,7 @@ import WhereIsMessageService from "../service/where-is-message.service";
 import { NextIntlClientProvider, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,6 +71,7 @@ export default async function RootLayout({
             {children}
           </App>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
