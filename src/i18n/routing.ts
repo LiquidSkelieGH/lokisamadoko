@@ -3,7 +3,8 @@ import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
     locales: ["en", "jp"],
-    defaultLocale: "en"
+    defaultLocale: "en",
+    localeCookie: false
 })
 
 export function getLocaleFromParameter(param: string | null | undefined) {

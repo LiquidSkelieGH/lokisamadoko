@@ -13,8 +13,7 @@ const holodexResponse: HolodexVideoList = [
         "channel": { "id": "UCucJYLJSEFRRfV2CA_JGHIQ", "name": "Loki Ch. 巫ロキ 【Phase Connect】", "org": "Phase Connect", "suborg": "aaPhase JP - Kaleido", "type": "vtuber", "photo": "https://yt3.ggpht.com/e-gl4iAYAUpAjl_17nlv8B7eXs2quLGcGr9QPoleQ-EZkkoNqvAVoxgWUlVy5V-Chxz55QAnzA=s800-c-k-c0x00ffffff-no-rj", "english_name": "Kannagi Loki" } 
     }, { 
         "id": "s__Mtjo6Nzg", 
-        "title": 
-        "⌛planned site￤#巫ロキ/Phase Connect", 
+        "title": "⌛planned site￤#巫ロキ/Phase Connect", 
         "type": "stream", 
         "published_at": "2025-09-26T20:09:35.000Z", 
         "available_at": "2025-10-05T03:00:00.000Z", 

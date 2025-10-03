@@ -5,5 +5,22 @@
     },
     "Header": {
         "Title": "Loki-sama wa"
+    },
+    "LastStream": {
+        "Pending": "Loading last stream info...",
+        "NoStream": "No recent streams",
+        "Message": "Last stream finished {days} days, {hours} hours, {minutes} minutes ago",
+        "DateTimeMessage": "On {streamDate, date, long} at {streamDate, time, short}",
+        "Error": "Failed to load last stream info"
+    },
+    "NextStream": {
+        "Pending": "Loading next stream info...",
+        "NoStream": "No streams planned",
+        "Message": "Next stream is in {days} days, {hours} hours, {minutes} minutes",
+        "DateTimeMessage": "On {streamDate, date, long} at {streamDate, time, short}",
+        "Error": "Failed to load next stream info"
+    },
+    "Footer": {
+        "Text": "Not affiliated with Phase Connect. All content is fan-made and for personal use only. Please don't sue me. Data comes from Holodex.net"
     }
 }

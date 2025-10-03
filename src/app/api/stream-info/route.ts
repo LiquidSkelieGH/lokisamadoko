@@ -18,19 +18,19 @@ export async function GET(request: NextRequest): Promise<Response> {
         const headers = new Headers()
         headers.set("X-APIKEY", API_KEY || "")
         headers.set("Accept", "application/json")
-        const holodexResponse = await fetch(`https://holodex.net/api/v2/videos?channel_id=${CHANNEL_ID}&status=new,upcoming,live,past&type=stream&sort=available_at&max_upcoming_hours=168`, 
+        const holodexResponse = await fetch(`https://holodex.net/api/v2/videos?channel_id=${CHANNEL_ID}&status=new,upcoming,live,past&type=stream&sort=available_at&max_upcoming_hours=168&include=description,live_info,refers,sources&limit=10`, 
             {
                 headers, 
                 next: { revalidate: REVALIDATE_SECONDS } // revalidate every minute
             }
         );
-    
+
         if (!holodexResponse.ok) {
             const status = holodexResponse.status;
             const errorText = await holodexResponse.text();
             return Response.json({ error: `Holodex API error: ${errorText}`, status, timestamp: new Date().toISOString() }, { status });
         }
-    
+
         const data: HolodexVideoList = await holodexResponse.json();
         return Response.json(data);
     }

@@ -1,9 +1,8 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "@/i18n/routing";
-import { NextRequest } from "next/server";;
+import { NextRequest } from "next/server";
 
 export default async function middleware(request: NextRequest) {
-    console.log("Middleware called with URL:", request.url);
     return createMiddleware(routing)(request);
 }
 
