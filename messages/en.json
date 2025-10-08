@@ -12,15 +12,15 @@
     "LastStream": {
         "Pending": "Loading last stream info...",
         "NoStream": "No recent streams",
-        "Message": "Last stream finished {days} days, {hours} hours, {minutes} minutes ago",
-        "DateTimeMessage": "On {streamDate, date, long} at {streamDate, time, short}",
+        "RelativeDateMessage": "Last stream finished {days} days, {hours} hours, {minutes} minutes ago",
+        "TimestampMessage": "On {streamDate}",
         "Error": "Failed to load last stream info"
     },
     "NextStream": {
         "Pending": "Loading next stream info...",
         "NoStream": "No streams planned",
-        "Message": "Next stream is in {days} days, {hours} hours, {minutes} minutes",
-        "DateTimeMessage": "On {streamDate, date, long} at {streamDate, time, short}",
+        "RelativeDateMessage": "Next stream is in {days} days, {hours} hours, {minutes} minutes",
+        "TimestampMessage": "On {streamDate}",
         "Error": "Failed to load next stream info"
     },
     "SocialLinks": {

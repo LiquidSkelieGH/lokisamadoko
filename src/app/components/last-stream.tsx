@@ -7,6 +7,8 @@ import { useFormatter, useNow, useTranslations } from "next-intl";
 import { calculateTimeDifference } from "../utils";
 import YouTubeDisplay from "./youtube-display";
 import { LayoutSection } from "./layout-section";
+import { DateTime } from "luxon";
+import StreamLayoutSection from "./stream-layout";
 
 export function LastStreamContainer({ message, streamDate }: { message: string, streamDate?: string }) {
     return (
@@ -19,17 +21,30 @@ export function LastStreamContainer({ message, streamDate }: { message: string, 
     );
 }
 
-function LastStreamWithEmbed({ stream, streamDate }: { stream: HolodexVideo, streamDate: Date }) {
-    const t = useTranslations('LastStream');
-    const difference = calculateTimeDifference(streamDate, new Date());
-    return (
-        <LayoutSection>
-            <p className="text-lg">{t('Message', {...difference})}</p>
-            <div>
-                <YouTubeDisplay stream={stream} />
-            </div>
-        </LayoutSection>
-    )
+function findStreamEndDateTime(stream: HolodexVideo): DateTime | undefined {
+    if (stream.end_actual) {
+        return DateTime.fromISO(stream.end_actual);
+    }
+    if (stream.start_actual && stream.duration) {
+        return DateTime.fromISO(stream.start_actual).plus({seconds: stream.duration});
+    }
+    return undefined;
+}
+
+function compareStreamEndTimes(a: HolodexVideo, b: HolodexVideo): number {
+    const aEndDate = findStreamEndDateTime(a);
+    const bEndDate = findStreamEndDateTime(b);
+
+    if (aEndDate && bEndDate) {
+        return bEndDate.diff(aEndDate).milliseconds;
+    }
+    if (aEndDate) {
+        return -1;
+    }
+    if (bEndDate) {
+        return 1;
+    }
+    return 0;
 }
 
 export default function LastStream() {
@@ -41,8 +56,8 @@ export default function LastStream() {
             }
 
             return data
-                .filter(video => video.status === "past" && video.type === "stream" && video.published_at)
-                .sort((a, b) => new Date(b.published_at as string).getTime() - new Date(a.published_at as string).getTime())[0];
+                .filter(video => video.status === "past" && video.type === "stream" && findStreamEndDateTime(video))
+                .sort(compareStreamEndTimes)[0];
         }
     });
     const t = useTranslations('LastStream');
@@ -58,7 +73,6 @@ export default function LastStream() {
     if (streamInfo === null || streamInfo === undefined) {
         return < LastStreamContainer message={t('NoStream')} />
     }
-    const streamDate = new Date(streamInfo.published_at as string);
-    const difference = calculateTimeDifference(streamDate, now);
-    return < LastStreamWithEmbed streamDate={streamDate} stream={streamInfo}/>;
+    const streamDate = findStreamEndDateTime(streamInfo) as DateTime;
+    return <StreamLayoutSection stream={streamInfo} displayDate={streamDate} namespace="LastStream"/>;
 }

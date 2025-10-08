@@ -20,10 +20,12 @@ export interface HolodexVideo {
     type: VideoType;
     status: VideoStatus;
     title: string;
-    duration: number; // seconds
+    duration?: number; // seconds
     published_at?: string; // ISO timestamp
     available_at?: string; // ISO timestamp used for sorting
     start_scheduled?: string | null; // ISO timestamp when scheduled
+    start_actual?: string | null; // ISO timestamp when stream started
+    end_actual?: string | null; // ISO timestamp when stream ended
     topic_id?: string | null; // e.g. "english_only"
     channel: Channel;
     // allow extra properties Holodex may include
