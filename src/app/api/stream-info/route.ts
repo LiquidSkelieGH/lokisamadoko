@@ -1,11 +1,13 @@
-import { HolodexVideoList } from "@/types/holodex";
+import { HolodexVideoList } from "@/lib/common/types/holodex";
 import type { NextRequest } from "next/server";
-import holodexResponse from "@/app/data/fixture/holodex_response";
+import holodexResponse from "@/fixture/holodex_response";
+import { getEnvironmentService } from "@/lib/common/di/hooks";
 
-const API_KEY = process.env.HOLODEX_API_KEY;
-const CHANNEL_ID = process.env.CHANNEL_ID;
-const REVALIDATE_SECONDS = process.env.REVALIDATE_SECONDS ? parseInt(process.env.REVALIDATE_SECONDS) : 900;
-const USE_FIXTURE_DATA = process.env.USE_FIXTURE_DATA === "true";
+const env = getEnvironmentService();
+const API_KEY = env.holodexAPIKey;
+const CHANNEL_ID = env.channelId;
+const REVALIDATE_SECONDS = env.revalidateHolodexCacheInSeconds;
+const USE_FIXTURE_DATA = env.useFixtureData;
 
 if (!API_KEY) {
     throw new Error("Missing HOLODEX_API_KEY environment variable");

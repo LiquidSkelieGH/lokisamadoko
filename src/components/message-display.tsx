@@ -1,11 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useMessage } from "../contexts"
+import { useMessage } from "@/app/contexts"
 import { useQuery } from "@tanstack/react-query";
-import { streamInfoOptions } from "../service/stream-info.client";
-import { WhereIsMessage } from "@/types/server";
-import { HolodexVideo } from "@/types/holodex";
+import { streamInfoOptions } from "@/lib/client/di/hooks";
+import { WhereIsMessage } from "@/lib/common/types/server";
+import { HolodexVideo } from "@/lib/common/types/holodex";
 import YouTubeDisplay from "./youtube-display";
 import Image from "next/image";
 import { LayoutSection } from "./layout-section";

@@ -2,8 +2,8 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
-import { MessageContext } from "../contexts";
-import { WhereIsMessage } from "@/types/server";
+import { MessageContext } from "@/app/contexts";
+import { WhereIsMessage } from "@/lib/common/types/server";
 
 export default function App({ message, children }: { message: WhereIsMessage, children: React.ReactNode }) {
     const [queryClient] = React.useState(() => new QueryClient({

@@ -1,4 +1,4 @@
-import { HolodexVideo } from "@/types/holodex";
+import { HolodexVideo } from "@/lib/common/types/holodex";
 import { DateTime } from "luxon";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { LayoutSection } from "./layout-section";

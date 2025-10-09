@@ -1,4 +1,4 @@
-import { HolodexVideo } from "@/types/holodex";
+import { HolodexVideo } from "@/lib/common/types/holodex";
 import Image from "next/image";
 
 export default function YouTubeDisplay({ stream }: { stream: HolodexVideo }) {

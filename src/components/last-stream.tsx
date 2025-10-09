@@ -1,11 +1,8 @@
 "use client";
 import { useQuery } from "@tanstack/react-query"
-import { streamInfoOptions } from "../service/stream-info.client"
-import { HolodexVideo, VideoType } from "@/types/holodex"
-import { useTransition } from "react";
+import { streamInfoOptions } from "@/lib/client/di/hooks"
+import { HolodexVideo, VideoType } from "@/lib/common/types/holodex"
 import { useFormatter, useNow, useTranslations } from "next-intl";
-import { calculateTimeDifference } from "../utils";
-import YouTubeDisplay from "./youtube-display";
 import { LayoutSection } from "./layout-section";
 import { DateTime } from "luxon";
 import StreamLayoutSection from "./stream-layout";

@@ -1,4 +1,4 @@
-import { HolodexVideoList } from "@/types/holodex";
+import { HolodexVideoList } from "@/lib/common/types/holodex";
 
 const holodexResponse: HolodexVideoList = [
     { 
