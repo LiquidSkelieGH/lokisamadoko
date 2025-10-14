@@ -1,8 +1,5 @@
-import "reflect-metadata";
-import { injectable } from "inversify";
 import { IEnvironmentService } from "../env.service";
 
-@injectable()
 export default class ProcessEnvironmentServiceImpl implements IEnvironmentService {
     get channelId(): string {
         let channelId = process.env.CHANNEL_ID;

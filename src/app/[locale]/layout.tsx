@@ -7,7 +7,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next"
 import { getWhereIsMessageService } from "@/lib/server/di/hooks";
-import { getEnvironmentService } from "@/lib/common/di/hooks";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +24,6 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: true,
 };
-
-const SITE_URL = getEnvironmentService().siteUrl;
 
 export async function generateMetadata(props: LayoutProps<'/[locale]'>, parent: ResolvingMetadata): Promise<Metadata> {
   const { locale } = await props.params;

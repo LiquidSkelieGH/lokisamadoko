@@ -3,17 +3,12 @@ import type { NextRequest } from "next/server";
 import holodexResponse from "@/fixture/holodex_response";
 import { getEnvironmentService } from "@/lib/common/di/hooks";
 
-const env = getEnvironmentService();
-const API_KEY = env.holodexAPIKey;
-const CHANNEL_ID = env.channelId;
-const REVALIDATE_SECONDS = env.revalidateHolodexCacheInSeconds;
-const USE_FIXTURE_DATA = env.useFixtureData;
-
-if (!API_KEY) {
-    throw new Error("Missing HOLODEX_API_KEY environment variable");
-}
-
 export async function GET(request: NextRequest): Promise<Response> {
+    const env = getEnvironmentService();
+    const API_KEY = env.holodexAPIKey;
+    const CHANNEL_ID = env.channelId;
+    const REVALIDATE_SECONDS = env.revalidateHolodexCacheInSeconds;
+    const USE_FIXTURE_DATA = env.useFixtureData;
     if (USE_FIXTURE_DATA) {
         return Response.json(holodexResponse);
     } else {
